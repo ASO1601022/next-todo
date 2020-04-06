@@ -3,7 +3,7 @@ import TextArea from '../components/textarea';
 import Button from '../components/button';
 import styled from 'styled-components';
 import TextField from '../components/textField';
-
+import SelectBox from '../components/selectBox';
 
 const DlWrapper = styled.dl`
   dd {
@@ -14,6 +14,7 @@ const DlWrapper = styled.dl`
 export default () => {
   const [textarea, setTextarea] = useState('aaa');
   const [text, setText] = useState('bbb');
+  const [options, setOption] = useState(['選択肢１', '選択肢２', '選択肢３']);
 
   return (
     <DlWrapper>
@@ -34,6 +35,9 @@ export default () => {
       <dt>text field</dt>
       <dd>
         <TextField label="ラベル" value={text} setter={setText} />
+      </dd>
+      <dd>
+        <SelectBox options={options} setter={setOption[0]}></SelectBox>
       </dd>
     </DlWrapper>
   );
