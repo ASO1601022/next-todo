@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import TextArea from '../components/textarea';
 import Button from '../components/button';
 import styled from 'styled-components';
+import TextField from '../components/textField';
+
 
 const DlWrapper = styled.dl`
   dd {
@@ -11,6 +13,8 @@ const DlWrapper = styled.dl`
 
 export default () => {
   const [text, setText] = useState('aaa');
+  const [text, setText] = useState('bbb');
+
 
   return (
     <DlWrapper>
@@ -27,6 +31,10 @@ export default () => {
       </dd>
       <dd>
         <Button text="main" valiant="main" onClick={() => alert('クリックされた')} />
+      </dd>
+      <dt>text field</dt>
+      <dd>
+        <TextField label="ラベル" value={text} setter={setText} />
       </dd>
     </DlWrapper>
   );
