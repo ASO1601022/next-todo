@@ -12,15 +12,14 @@ const DlWrapper = styled.dl`
 `;
 
 export default () => {
-  const [text, setText] = useState('aaa');
+  const [textarea, setTextarea] = useState('aaa');
   const [text, setText] = useState('bbb');
-
 
   return (
     <DlWrapper>
       <dt>textarea</dt>
       <dd>
-        <TextArea label="ラベル" value={text} setter={setText} />
+        <TextArea label="ラベル" value={textarea} setter={setTextarea} />
       </dd>
       <dt>ボタン</dt>
       <dd>
