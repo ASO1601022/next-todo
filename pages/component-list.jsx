@@ -14,7 +14,20 @@ const DlWrapper = styled.dl`
 export default () => {
   const [textarea, setTextarea] = useState('aaa');
   const [text, setText] = useState('bbb');
-  const [options, setOption] = useState(['選択肢１', '選択肢２', '選択肢３']);
+  const items = [
+    {
+      text: '選択肢１',
+      value: '1',
+    },
+    {
+      text: '選択肢2',
+      value: '2',
+    },
+    {
+      text: '選択肢255',
+      value: '255',
+    },
+  ];
 
   return (
     <DlWrapper>
@@ -37,7 +50,7 @@ export default () => {
         <TextField label="ラベル" value={text} setter={setText} />
       </dd>
       <dd>
-        <SelectBox options={options} setter={setOption[0]}></SelectBox>
+        <SelectBox options={items} setter={items}></SelectBox>
       </dd>
     </DlWrapper>
   );
