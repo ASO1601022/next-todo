@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import TextArea from '../components/textarea';
-import Button from '../components/button';
+import TextArea from '../components/Textarea';
+import Button from '../components/Button';
 import styled from 'styled-components';
-import TextField from '../components/textField';
-import SelectBox from '../components/selectBox';
+import TextField from '../components/TextField';
+import SelectBox from '../components/SelectBox';
 
 const DlWrapper = styled.dl`
   dd {
@@ -14,6 +14,7 @@ const DlWrapper = styled.dl`
 export default () => {
   const [textarea, setTextarea] = useState('aaa');
   const [text, setText] = useState('bbb');
+  const [select, setSelect] = useState('2');
   const items = [
     {
       text: '選択肢１',
@@ -49,8 +50,9 @@ export default () => {
       <dd>
         <TextField label="ラベル" value={text} setter={setText} />
       </dd>
+      <dt>select box</dt>
       <dd>
-        <SelectBox options={items} setter={items}></SelectBox>
+        <SelectBox items={items} value={select} setter={setSelect}></SelectBox>
       </dd>
     </DlWrapper>
   );

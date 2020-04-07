@@ -1,24 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SelectBox = ({ options = [], setter } = {}) => {
-  const changeHandler = () => {
-    setter;
+const SelectBox = ({ items = [], value = '', setter } = {}) => {
+  const changeHandler = (e) => {
+    setter && setter(e.target.value);
   };
-  const items = [];
-  {
-    options.forEach((option) => {
-      items.push(
-        <option key={option.value} value={option.value}>
-          {option.text}
-        </option>
-      );
-    });
-  }
+  const option = items.map((item, index) => {
+    return (
+      <option key={index} value={item.value}>
+        {item.text}
+      </option>
+    );
+  });
   return (
     <div>
-      <SelectBoxWrapper defaultValue={options[0].value} onChange={changeHandler}>
-        {items}
+      <SelectBoxWrapper defaultValue={value} onChange={changeHandler}>
+        {option}
       </SelectBoxWrapper>
     </div>
   );
