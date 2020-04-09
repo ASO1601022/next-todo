@@ -4,7 +4,7 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
-import InfoIcon from '../components/InfoIcon';
+import Icon from '../components/Icon';
 const DlWrapper = styled.dl`
   dd {
     padding: 10px;
@@ -29,7 +29,10 @@ export default () => {
       value: '255',
     },
   ];
-  const [state, setState] = useState(false);
+  const [infoState, setInfoState] = useState(false);
+  const [favState, setFavState] = useState(false);
+  const [delState, setDelState] = useState(false);
+  const [addState, setAddState] = useState(false);
 
   return (
     <DlWrapper>
@@ -57,7 +60,10 @@ export default () => {
       </dd>
       <dt>icon</dt>
       <dd>
-        <InfoIcon checked={state} setter={setState} />
+        <Icon name="info" checked={infoState} setter={setInfoState} />
+        <Icon name="fav" checked={favState} setter={setFavState} />
+        <Icon name="del" checked={delState} setter={setDelState} />
+        <Icon name="add" checked={addState} setter={setAddState} />
       </dd>
     </DlWrapper>
   );
