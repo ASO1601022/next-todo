@@ -4,7 +4,7 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
-
+import InfoIcon from '../components/InfoIcon';
 const DlWrapper = styled.dl`
   dd {
     padding: 10px;
@@ -29,6 +29,7 @@ export default () => {
       value: '255',
     },
   ];
+  const [state, setState] = useState(false);
 
   return (
     <DlWrapper>
@@ -53,6 +54,10 @@ export default () => {
       <dt>select box</dt>
       <dd>
         <SelectBox items={items} value={select} setter={setSelect}></SelectBox>
+      </dd>
+      <dt>icon</dt>
+      <dd>
+        <InfoIcon checked={state} setter={setState} />
       </dd>
     </DlWrapper>
   );
