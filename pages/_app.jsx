@@ -17,6 +17,7 @@ const theme = {
     gray: '#888888',
     lime: '#00EBC7',
     primary: '#0070f3',
+    white: '#FFFFFE',
   },
 };
 
