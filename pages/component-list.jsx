@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
+import CheckBox from '../components/CheckBox';
 
 const DlWrapper = styled.dl`
   dd {
@@ -29,6 +30,7 @@ export default () => {
       value: '255',
     },
   ];
+  const [taskCheck, setTaskCheck] = useState(false);
 
   return (
     <DlWrapper>
@@ -53,6 +55,10 @@ export default () => {
       <dt>select box</dt>
       <dd>
         <SelectBox items={items} value={select} setter={setSelect}></SelectBox>
+      </dd>
+      <dt>check box</dt>
+      <dd>
+        <CheckBox text="チェックボックスを作る" checked={taskCheck} setter={setTaskCheck} />
       </dd>
     </DlWrapper>
   );
