@@ -19,6 +19,7 @@ const theme = {
     primary: '#0070f3',
     blue: '#00DDEB',
     yellow: '#FFDF6F',
+    text: '#00214D',
   },
 };
 
