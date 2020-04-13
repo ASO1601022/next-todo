@@ -4,8 +4,8 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
+import Icon from '../components/Icon';
 import CheckBox from '../components/CheckBox';
-
 const DlWrapper = styled.dl`
   dd {
     padding: 10px;
@@ -30,6 +30,10 @@ export default () => {
       value: '255',
     },
   ];
+  const [infoState, setInfoState] = useState(false);
+  const [favState, setFavState] = useState(false);
+  const [delState, setDelState] = useState(false);
+  const [addState, setAddState] = useState(false);
   const [taskCheck, setTaskCheck] = useState(false);
 
   return (
@@ -56,6 +60,12 @@ export default () => {
       <dd>
         <SelectBox items={items} value={select} setter={setSelect}></SelectBox>
       </dd>
+      <dt>icon</dt>
+      <dd>
+        <Icon name="info" checked={infoState} setter={setInfoState} />
+        <Icon name="fav" checked={favState} setter={setFavState} />
+        <Icon name="del" checked={delState} setter={setDelState} />
+        <Icon name="add" checked={addState} setter={setAddState} />
       <dt>check box</dt>
       <dd>
         <CheckBox text="チェックボックスを作る" checked={taskCheck} setter={setTaskCheck} />
