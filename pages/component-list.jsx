@@ -32,9 +32,6 @@ export default () => {
   ];
   const [delState, setDelState] = useState(false);
   const task = 'モーダルを作る';
-  const ModalContent = () => {
-    return <div></div>;
-  };
 
   const deleteClickHandler = () => {
     setDelState(true);
