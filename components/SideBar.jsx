@@ -1,61 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
+import All from '../public/svg/img/all.svg';
+import Bag from '../public/svg/img/bag.svg';
+import FavList from '../public/svg/img/favList.svg';
+import Fire from '../public/svg/img/fire.svg';
+import Home from '../public/svg/img/home.svg';
+import Layer from '../public/svg/img/layer.svg';
+import Line from '../public/svg/img/line.svg';
+import Logo from '../public/svg/img/logo.svg';
+import Ref from '../public/svg/img/ref.svg';
 
-const SideBar = ({} = {}) => {
+const SideBar = ({ name, selected, setter } = {}) => {
+  const active = selected;
+  const iconList = { Bag, FavList, Fire, Home, Layer, Line };
+
+  const Svg = styled(iconList[name]);
+
+  const clickHandler = () => {
+    setter(!state);
+  };
   return (
-    <div>
-      <SideWrapper>
-      </SideWrapper>
-    </div>
+    <SideBarWrapper>
+      <Logo />
+      <p>
+        <All />
+        <Text>All</Text>
+      </p>
+      <p>
+        <FavList />
+        <Text>Favorite</Text>
+      </p>
+      <p>categories</p>
+      <Line />
+      <Bag />
+      <Ref />
+      <Fire />
+      <Home />
+      <Layer />
+    </SideBarWrapper>
   );
 };
 
 export default SideBar;
-/* style */
-const FullPage = styled.div`
-  display: ${(props) => (props.active ? 'block' : 'none')};
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  background: black;
-  opacity: 0.41;
-`;
 
-const SideWrapper = styled.div`
-  display: ${(props) => (props.active ? 'block' : 'none')};
-  position: absolute;
-  left: 25%;
-  top: 30%;
-  width: 626px;
-  height: 216px;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.colors.white};
-  .alert {
-    font-size: 24px;
-    line-height: 35px;
-    letter-spacing: 0.05em;
-    color: ${(props) => props.theme.colors.white};
-    display: flex;
-    align-items: center;
-    padding-left: 17px;
-
-    height: 50px;
-    background: ${(props) => props.theme.colors.main};
-    border-radius: 5px;
-  }
-  .msg {
-    font-size: 18px;
-    line-height: 26px;
-    letter-spacing: 0.05em;
-    padding: 18px;
-  }
-  .mb {
-    float: right;
-    margin: 9px;
-  }
-  .modalButton {
-    overflow: hidden;
-  }
+const SideBarWrapper = styled.div`
+  width: 289px;
+  height: 1024px;
+  left: 0;
+  background-color: ${(props) => props.theme.colors.main};
+  ${(props) => {
+    let style;
+    switch (props.name) {
+      case 'info':
+        style = css`
+          path {
+            fill: ${(props) => (props.active ? props.theme.colors.blue : props.theme.colors.gray)};
+          }
+        `;
+        break;
+      case 'fav':
+        style = css`
+          path {
+            fill: ${(props) =>
+              props.active ? props.theme.colors.yellow : props.theme.colors.gray};
+          }
+        `;
+        break;
+    }
+    return style;
+  }}
 `;

@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
+import SideBar from '../components/SideBar';
 
 const DlWrapper = styled.dl`
   dd {
@@ -53,6 +54,10 @@ export default () => {
       <dt>select box</dt>
       <dd>
         <SelectBox items={items} value={select} setter={setSelect}></SelectBox>
+      </dd>
+      <dt>side bar</dt>
+      <dd>
+        <SideBar name="Bag" />
       </dd>
     </DlWrapper>
   );
