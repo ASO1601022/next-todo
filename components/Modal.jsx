@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { children } from 'react';
 import styled, { css } from 'styled-components';
 
-const Modal = ({ active, content } = {}) => {
+const Modal = ({ active, children, ...props } = {}) => {
   return (
     <div>
       <FullPage active={active}></FullPage>
-      <ModalWrapper value="modal" active={active}>
-        {content}
-      </ModalWrapper>
+      <ModalWrapper active={active}>{children}</ModalWrapper>
     </div>
   );
 };
