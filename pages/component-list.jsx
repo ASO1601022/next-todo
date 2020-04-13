@@ -82,8 +82,7 @@ export default () => {
       <dt>modal</dt>
       <dd>
         <Button text="削除" valiant="outline" onClick={deleteClickHandler} />
-        <Modal active={delState} content={modalContent} className="aaaa" />
-        {test}
+        <Modal active={delState} content={modalContent} />
       </dd>
     </DlWrapper>
   );
