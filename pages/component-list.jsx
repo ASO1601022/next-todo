@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextArea from '../components/Textarea';
 import Button from '../components/Button';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
 import Modal from '../components/Modal';
@@ -30,9 +30,33 @@ export default () => {
       value: '255',
     },
   ];
+  const [delState, setDelState] = useState(false);
+  const task = 'モーダルを作る';
+  const modalContent = (
+    <>
+      <p className="alert">警告</p>
+      <p className="msg">この操作は取り消しできません。タスク「{task}」を削除します。</p>
+      <div className="modalButton">
+        <div className="mb">
+          <Button text="削除" valiant="main" />
+        </div>
+        <div className="mb">
+          <Button text="削除しない" valiant="outline" />
+        </div>
+      </div>
+    </>
+  );
+
+  const deleteClickHandler = () => {
+    setDelState(true);
+  };
+
+  const closeHandler = (e) => {
+    delState && setDelState(false);
+  };
 
   return (
-    <DlWrapper>
+    <DlWrapper onClick={closeHandler}>
       <dt>textarea</dt>
       <dd>
         <TextArea label="ラベル" value={textarea} setter={setTextarea} />
@@ -57,7 +81,9 @@ export default () => {
       </dd>
       <dt>modal</dt>
       <dd>
-        <Modal task="モーダルを作る" />
+        <Button text="削除" valiant="outline" onClick={deleteClickHandler} />
+        <Modal active={delState} content={modalContent} className="aaaa" />
+        {test}
       </dd>
     </DlWrapper>
   );

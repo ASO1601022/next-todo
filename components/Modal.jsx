@@ -1,39 +1,30 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import Button from './Button';
 
-const Modal = ({ task = '' } = {}) => {
-  const [state, setState] = useState(false);
-  const clickHandler = (e) => {
-    setState(true);
-  };
-  const deleteHandler = (e) => {
-    setState(false);
-  };
-  const cancelHandler = (e) => {
-    setState(false);
-  };
+const Modal = ({ active, content } = {}) => {
   return (
     <div>
-      <ModalWrapper active={state}>
-        <p className="alert">警告</p>
-        <p className="msg">この操作は取り消しできません。タスク「{task}」を削除します。</p>
-        <div className="modalButton">
-          <div className="mb">
-            <Button text="削除" valiant="main" onClick={deleteHandler} />
-          </div>
-          <div className="mb">
-            <Button text="削除しない" valiant="outline" onClick={cancelHandler} />
-          </div>
-        </div>
+      <FullPage active={active}></FullPage>
+      <ModalWrapper value="modal" active={active}>
+        {content}
       </ModalWrapper>
-      <button onClick={clickHandler}>削除</button>
     </div>
   );
 };
 
 export default Modal;
 /* style */
+const FullPage = styled.div`
+  display: ${(props) => (props.active ? 'block' : 'none')};
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.41;
+`;
+
 const ModalWrapper = styled.div`
   display: ${(props) => (props.active ? 'block' : 'none')};
   position: absolute;
@@ -41,6 +32,7 @@ const ModalWrapper = styled.div`
   top: 30%;
   width: 626px;
   height: 216px;
+  border-radius: 5px;
   background-color: ${(props) => props.theme.colors.white};
   .alert {
     font-size: 24px;
