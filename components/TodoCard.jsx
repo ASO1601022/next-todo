@@ -8,7 +8,7 @@ const TodoCard = ({ text = '', category, date, checked } = {}) => {
   const [infoState, setInfoState] = useState(checked);
   const [favState, setFavState] = useState(checked);
   const [delState, setDelState] = useState(checked);
-  let day = date.getDate() + 16;
+  let day = date.getDate();
   let month = [
     'Jan.',
     'Feb.',
