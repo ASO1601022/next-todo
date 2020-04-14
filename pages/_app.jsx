@@ -8,6 +8,8 @@ import restCSS from 'ress';
 
 const GlobalStyle = createGlobalStyle`
   ${restCSS}
+  @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
 `;
 
 const theme = {
@@ -20,6 +22,7 @@ const theme = {
     blue: '#00DDEB',
     yellow: '#FFDF6F',
     text: '#00214D',
+    saturday: '#23BCDD',
   },
 };
 

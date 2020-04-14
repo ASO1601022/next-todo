@@ -6,6 +6,7 @@ import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
 import Icon from '../components/Icon';
 import CheckBox from '../components/CheckBox';
+import TodoCard from '../components/TodoCard';
 const DlWrapper = styled.dl`
   dd {
     padding: 10px;
@@ -66,9 +67,14 @@ export default () => {
         <Icon name="fav" checked={favState} setter={setFavState} />
         <Icon name="del" checked={delState} setter={setDelState} />
         <Icon name="add" checked={addState} setter={setAddState} />
+      </dd>
       <dt>check box</dt>
       <dd>
         <CheckBox text="チェックボックスを作る" checked={taskCheck} setter={setTaskCheck} />
+      </dd>
+      <dt>todo card</dt>
+      <dd>
+        <TodoCard text="Todoカードを作る" category="Work" date={new Date()} checked={false} />
       </dd>
     </DlWrapper>
   );
