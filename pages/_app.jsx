@@ -8,6 +8,7 @@ import restCSS from 'ress';
 
 const GlobalStyle = createGlobalStyle`
   ${restCSS}
+  @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 `;
 
 const theme = {
@@ -17,6 +18,7 @@ const theme = {
     gray: '#888888',
     lime: '#00EBC7',
     primary: '#0070f3',
+    white: '#FFFFFE',
   },
 };
 

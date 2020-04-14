@@ -30,6 +30,7 @@ export default () => {
       value: '255',
     },
   ];
+  const [page, setPage] = useState('all');
 
   return (
     <DlWrapper>
@@ -57,7 +58,7 @@ export default () => {
       </dd>
       <dt>side bar</dt>
       <dd>
-        <SideBar name="Bag" />
+        <SideBar selected={page} setter={setPage} />
       </dd>
     </DlWrapper>
   );
