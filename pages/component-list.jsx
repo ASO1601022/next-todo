@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, Children } from 'react';
 import TextArea from '../components/Textarea';
 import Button from '../components/Button';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
+import Modal from '../components/Modal';
 import Icon from '../components/Icon';
 import CheckBox from '../components/CheckBox';
 import TodoCard from '../components/TodoCard';
+
 const DlWrapper = styled.dl`
   dd {
     padding: 10px;
@@ -31,14 +33,24 @@ export default () => {
       value: '255',
     },
   ];
+  const [delState, setDelState] = useState(false);
+  const task = 'モーダルを作る';
   const [infoState, setInfoState] = useState(false);
   const [favState, setFavState] = useState(false);
   const [delState, setDelState] = useState(false);
   const [addState, setAddState] = useState(false);
   const [taskCheck, setTaskCheck] = useState(false);
 
+  const deleteClickHandler = () => {
+    setDelState(true);
+  };
+
+  const closeHandler = (e) => {
+    delState && setDelState(false);
+  };
+
   return (
-    <DlWrapper>
+    <DlWrapper onClick={closeHandler}>
       <dt>textarea</dt>
       <dd>
         <TextArea label="ラベル" value={textarea} setter={setTextarea} />
@@ -61,6 +73,21 @@ export default () => {
       <dd>
         <SelectBox items={items} value={select} setter={setSelect}></SelectBox>
       </dd>
+      <dt>modal</dt>
+      <dd>
+        <Button text="削除" valiant="outline" onClick={deleteClickHandler} />
+        <Modal active={delState}>
+          <p className="alert">警告</p>
+          <p className="msg">この操作は取り消しできません。タスク「{task}」を削除します。</p>
+          <div className="modalButton">
+            <div className="mb">
+              <Button text="削除" valiant="main" />
+            </div>
+            <div className="mb">
+              <Button text="削除しない" valiant="outline" />
+            </div>
+          </div>
+        </Modal>
       <dt>icon</dt>
       <dd>
         <Icon name="info" checked={infoState} setter={setInfoState} />
