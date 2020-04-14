@@ -24,9 +24,11 @@
     "styled-components": "^4.0.0"
   },
   "devDependencies": {
+    "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.8.0",
     "boxen": "^4.2.0",
     "husky": "^4.2.3",
+    "react-svg-loader": "^3.0.3",
     "serve": "^11.3.0"
   },
   "license": "ISC"
