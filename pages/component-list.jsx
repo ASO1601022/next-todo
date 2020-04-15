@@ -33,7 +33,7 @@ export default () => {
       value: '255',
     },
   ];
-  const [delState, setDelState] = useState(false);
+  const [del, setDel] = useState(false);
   const task = 'モーダルを作る';
   const [infoState, setInfoState] = useState(false);
   const [favState, setFavState] = useState(false);
@@ -42,11 +42,11 @@ export default () => {
   const [taskCheck, setTaskCheck] = useState(false);
 
   const deleteClickHandler = () => {
-    setDelState(true);
+    setDel(true);
   };
 
   const closeHandler = (e) => {
-    delState && setDelState(false);
+    del && setDel(false);
   };
 
   return (
@@ -76,7 +76,7 @@ export default () => {
       <dt>modal</dt>
       <dd>
         <Button text="削除" valiant="outline" onClick={deleteClickHandler} />
-        <Modal active={delState}>
+        <Modal active={del}>
           <p className="alert">警告</p>
           <p className="msg">この操作は取り消しできません。タスク「{task}」を削除します。</p>
           <div className="modalButton">
@@ -88,6 +88,7 @@ export default () => {
             </div>
           </div>
         </Modal>
+      </dd>
       <dt>icon</dt>
       <dd>
         <Icon name="info" checked={infoState} setter={setInfoState} />
