@@ -10,17 +10,16 @@ import Line from '../public/svg/img/line.svg';
 import Logo from '../public/svg/img/logo.svg';
 import Ref from '../public/svg/img/ref.svg';
 import Changer from '../public/svg/img/changer.svg';
+import Pen from '../public/svg/img/pen.svg';
 
 const SideBar = ({ selected, setter } = {}) => {
   const active = selected;
-  const iconList = ['all', 'bag', 'favList', 'fire', 'home', 'layer', 'ref'];
 
   const changeHandler = (e) => {
     e.target.id !== '' && setter && setter(e.target.id);
-    console.log(active);
   };
   return (
-    <div>
+    <FullWrapper>
       <SideBarWrapper onClick={changeHandler}>
         <Logo className="logo" />
         <PageWrapper selected={active}>
@@ -59,15 +58,69 @@ const SideBar = ({ selected, setter } = {}) => {
             <Text id="layer">その他</Text>
           </div>
         </PageWrapper>
+        <button>
+          <Pen />
+          <span>Edit Categories</span>
+        </button>
       </SideBarWrapper>
-      <Changer />
-    </div>
+      <Svg selected={active} />
+    </FullWrapper>
   );
 };
 
 export default SideBar;
+const Svg = styled(Changer)`
+  position: relative;
+  left: 248px;
+  ${(props) => {
+    let style;
+    switch (props.selected) {
+      case 'all':
+        style = css`
+          top: -955px;
+        `;
+        break;
+      case 'favList':
+        style = css`
+          top: -910px;
+        `;
+        break;
+      case 'bag':
+        style = css`
+          top: -813px;
+        `;
+        break;
+      case 'ref':
+        style = css`
+          top: -765px;
+        `;
+        break;
+      case 'fire':
+        style = css`
+          top: -723px;
+        `;
+        break;
+      case 'home':
+        style = css`
+          top: -680px;
+        `;
+        break;
+      case 'layer':
+        style = css`
+          top: -635px;
+        `;
+        break;
+    }
+    return style;
+  }};
+`;
+
+const FullWrapper = styled.div`
+  background-color: ${(props) => props.theme.colors.white};
+`;
 
 const SideBarWrapper = styled.div`
+  box-shadow: -6px 0px 6px rgba(0, 0, 0, 0.15) inset;
   font-family: 'Raleway';
   width: 289px;
   height: 1024px;
@@ -76,10 +129,29 @@ const SideBarWrapper = styled.div`
   .logo {
     margin: 30px;
   }
+  button {
+    background-color: rgba(166, 57, 75, 0.3);
+    width: 212px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    text-align: left;
+    margin-left: 20px;
+  }
+  button > svg {
+    margin-left: 10px;
+  }
+  button > span {
+    color: ${(props) => props.theme.colors.white};
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-left: 20px;
+  }
 `;
 
 const PageWrapper = styled.div`
   color: rgba(255, 255, 254, 0.54);
+  margin-left: 10px;
   div {
     margin: 20px;
     height: 24px;
@@ -115,28 +187,8 @@ const PageWrapper = styled.div`
 
 const Text = styled.span`
   font-size: 18px;
+  font-weight: 600;
   line-height: 21px;
   margin-left: 30px;
   vertical-align: middle;
-  ${(props) => {
-    let style;
-    switch (props.name) {
-      case 'info':
-        style = css`
-          path {
-            fill: ${(props) => (props.active ? props.theme.colors.blue : props.theme.colors.gray)};
-          }
-        `;
-        break;
-      case 'fav':
-        style = css`
-          path {
-            fill: ${(props) =>
-              props.active ? props.theme.colors.yellow : props.theme.colors.gray};
-          }
-        `;
-        break;
-    }
-    return style;
-  }};
 `;
