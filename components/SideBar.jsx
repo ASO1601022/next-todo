@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import All from '../public/svg/img/all.svg';
-import Bag from '../public/svg/img/bag.svg';
 import FavList from '../public/svg/img/favList.svg';
-import Fire from '../public/svg/img/fire.svg';
-import Home from '../public/svg/img/home.svg';
-import Layer from '../public/svg/img/layer.svg';
 import Line from '../public/svg/img/line.svg';
 import Logo from '../public/svg/img/logo.svg';
-import Ref from '../public/svg/img/ref.svg';
 import Changer from '../public/svg/img/changer.svg';
 import Pen from '../public/svg/img/pen.svg';
 
-const SideBar = ({ selected, setter } = {}) => {
+const SideBar = ({ selected, setter, children, ...props } = {}) => {
   const active = selected;
-
+  const [y, setY] = useState(-955);
   const changeHandler = (e) => {
-    e.target.id !== '' && setter && setter(e.target.id);
+    // 要素の位置を取得
+    let positionY = e.target.getBoundingClientRect().top + window.pageYOffset;
+    // 要素内におけるクリック位置を計算
+    if (e.target.id !== '') {
+      setY(positionY - 1580);
+      setter && setter(e.target.id);
+    }
   };
+  const editHandler = () => {};
   return (
     <FullWrapper>
       <SideBarWrapper onClick={changeHandler}>
@@ -37,33 +39,14 @@ const SideBar = ({ selected, setter } = {}) => {
               <Line />
             </div>
           </div>
-          <div id="bag">
-            <Bag id="bag" />
-            <Text id="bag">Work</Text>
-          </div>
-          <div id="ref">
-            <Ref id="ref" />
-            <Text id="ref">お買い物リスト</Text>
-          </div>
-          <div id="fire">
-            <Fire id="fire" />
-            <Text id="fire">買いたい</Text>
-          </div>
-          <div id="home">
-            <Home id="home" />
-            <Text id="home">House</Text>
-          </div>
-          <div id="layer">
-            <Layer id="layer" />
-            <Text id="layer">その他</Text>
-          </div>
+          {children}
         </PageWrapper>
-        <button>
+        <button onClick={editHandler}>
           <Pen />
           <span>Edit Categories</span>
         </button>
       </SideBarWrapper>
-      <Svg selected={active} />
+      <Svg selected={active} pos={y} />
     </FullWrapper>
   );
 };
@@ -72,47 +55,7 @@ export default SideBar;
 const Svg = styled(Changer)`
   position: relative;
   left: 248px;
-  ${(props) => {
-    let style;
-    switch (props.selected) {
-      case 'all':
-        style = css`
-          top: -955px;
-        `;
-        break;
-      case 'favList':
-        style = css`
-          top: -910px;
-        `;
-        break;
-      case 'bag':
-        style = css`
-          top: -813px;
-        `;
-        break;
-      case 'ref':
-        style = css`
-          top: -765px;
-        `;
-        break;
-      case 'fire':
-        style = css`
-          top: -723px;
-        `;
-        break;
-      case 'home':
-        style = css`
-          top: -680px;
-        `;
-        break;
-      case 'layer':
-        style = css`
-          top: -635px;
-        `;
-        break;
-    }
-    return style;
-  }};
+  top: ${(props) => props.pos}px;
 `;
 
 const FullWrapper = styled.div`
