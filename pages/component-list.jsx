@@ -5,11 +5,6 @@ import styled from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
 import SideBar from '../components/SideBar';
-import bag from '../public/svg/img/bag.svg';
-import fire from '../public/svg/img/fire.svg';
-import home from '../public/svg/img/home.svg';
-import ref from '../public/svg/img/ref.svg';
-import layer from '../public/svg/img/layer.svg';
 
 const DlWrapper = styled.dl`
   dd {
@@ -46,40 +41,25 @@ export default () => {
   const cateList = [
     {
       id: 'bag',
-      icon: bag,
       name: 'Work',
     },
     {
       id: 'ref',
-      icon: ref,
       name: 'お買い物リスト',
     },
     {
       id: 'fire',
-      icon: fire,
       name: '買いたい',
     },
     {
       id: 'home',
-      icon: home,
       name: 'House',
     },
     {
       id: 'layer',
-      icon: layer,
       name: 'その他',
     },
   ];
-
-  const categories = cateList.map((cate, index) => {
-    const Svg = styled(cate.icon)``;
-    return (
-      <div id={cate.id} key={index}>
-        <Svg id={cate.id} />
-        <Text id={cate.id}>{cate.name}</Text>
-      </div>
-    );
-  });
 
   return (
     <DlWrapper>
@@ -107,9 +87,7 @@ export default () => {
       </dd>
       <dt>side bar</dt>
       <dd>
-        <SideBar selected={page} setter={setPage}>
-          {categories}
-        </SideBar>
+        <SideBar selected={page} setter={setPage} items={cateList} />
       </dd>
     </DlWrapper>
   );
