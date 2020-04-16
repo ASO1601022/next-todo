@@ -6,9 +6,26 @@ import Line from '../public/svg/img/line.svg';
 import Logo from '../public/svg/img/logo.svg';
 import Changer from '../public/svg/img/changer.svg';
 import Pen from '../public/svg/img/pen.svg';
+import bag from '../public/svg/img/bag.svg';
+import fire from '../public/svg/img/fire.svg';
+import home from '../public/svg/img/home.svg';
+import ref from '../public/svg/img/ref.svg';
+import layer from '../public/svg/img/layer.svg';
 
-const SideBar = ({ selected, setter, children, ...props } = {}) => {
+const SideBar = ({ selected, setter, items } = {}) => {
   const active = selected;
+
+  const iconList = { bag, fire, home, ref, layer };
+  const categories = items.map((cate, index) => {
+    const Svg = styled(iconList[cate.id])``;
+    return (
+      <div id={cate.id} key={index}>
+        <Svg id={cate.id} />
+        <Text id={cate.id}>{cate.name}</Text>
+      </div>
+    );
+  });
+
   const [y, setY] = useState(-955);
   const changeHandler = (e) => {
     // 要素の位置を取得
@@ -39,7 +56,7 @@ const SideBar = ({ selected, setter, children, ...props } = {}) => {
               <Line />
             </div>
           </div>
-          {children}
+          {categories}
         </PageWrapper>
         <button onClick={editHandler}>
           <Pen />
