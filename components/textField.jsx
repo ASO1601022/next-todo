@@ -25,6 +25,7 @@ const TextFieldWrapper = styled.input`
   background-color: white;
   ::placeholder {
     color: ${(props) => props.theme.colors.gray};
+    text-align: center;
   }
 `;
 const LabelWrapper = styled.label`
