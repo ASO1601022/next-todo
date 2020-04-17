@@ -79,7 +79,7 @@ export default () => {
       })
       .then(function (response) {
         alert(response.data.token);
-        location.href = dispatch(login(response.data.token)) && '/counter';
+        location.href = dispatch(login(response.data.token)) && '/todoList';
       })
       .catch(function (error) {
         console.log(error);
