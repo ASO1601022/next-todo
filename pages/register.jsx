@@ -32,6 +32,7 @@ const ColorCover = styled.div`
   }
   input {
     width: 30%;
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.25);
   }
   input[type='password'] {
     border-radius: 5px;
@@ -48,6 +49,7 @@ const ColorCover = styled.div`
   button {
     padding: 15px 34px;
     margin: 1% 0;
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.25);
   }
   .elem {
     margin: 3%;
