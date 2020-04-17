@@ -77,7 +77,7 @@ export default () => {
         password: pass,
       })
       .then(function (response) {
-        location.href = dispatch(regist(response.data.email)) && '/counter';
+        location.href = dispatch(regist(response.data.email)) && '/login';
       })
       .catch(function (error) {
         console.log(error);
