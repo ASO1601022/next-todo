@@ -78,7 +78,6 @@ export default () => {
         password: pass,
       })
       .then(function (response) {
-        alert(response.data.token);
         location.href = dispatch(login(response.data.token)) && '/todoList';
       })
       .catch(function (error) {
