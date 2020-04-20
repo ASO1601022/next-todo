@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { login } from '../stores/login';
 import styled, { css } from 'styled-components';
 import Logo from '../public/svg/img/logo.svg';
@@ -63,6 +64,8 @@ const ColorCover = styled.div`
 `;
 export default () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const axios = require('axios');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
@@ -71,14 +74,13 @@ export default () => {
   };
 
   const loginHandler = () => {
-    const axios = require('axios');
     axios
       .post('https://asia-northeast1-next-todo-002.cloudfunctions.net/api/users/login', {
         email: email,
         password: pass,
       })
       .then(function (response) {
-        location.href = dispatch(login(response.data.token)) && '/todoList';
+        dispatch(login(response.data.token)) && router.push('/todoList');
       })
       .catch(function (error) {
         console.log(error);
