@@ -64,6 +64,7 @@ const ColorCover = styled.div`
 
 export default () => {
   const dispatch = useDispatch();
+  const axios = require('axios');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
@@ -72,7 +73,6 @@ export default () => {
   };
 
   const registerHandler = () => {
-    const axios = require('axios');
     axios
       .post('https://asia-northeast1-next-todo-002.cloudfunctions.net/api/users', {
         email: email,
