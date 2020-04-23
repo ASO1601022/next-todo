@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, Children } from 'react';
 import TextArea from '../components/Textarea';
 import Button from '../components/Button';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
 import SideBar from '../components/SideBar';
+import Modal from '../components/Modal';
+import Icon from '../components/Icon';
+import CheckBox from '../components/CheckBox';
+import TodoCard from '../components/TodoCard';
 
 const DlWrapper = styled.dl`
   dd {
@@ -60,9 +64,24 @@ export default () => {
       name: 'その他',
     },
   ];
+  const [del, setDel] = useState(false);
+  const task = 'モーダルを作る';
+  const [infoState, setInfoState] = useState(false);
+  const [favState, setFavState] = useState(false);
+  const [delState, setDelState] = useState(false);
+  const [addState, setAddState] = useState(false);
+  const [taskCheck, setTaskCheck] = useState(false);
+
+  const deleteClickHandler = () => {
+    setDel(true);
+  };
+
+  const closeHandler = (e) => {
+    del && setDel(false);
+  };
 
   return (
-    <DlWrapper>
+    <DlWrapper onClick={closeHandler}>
       <dt>textarea</dt>
       <dd>
         <TextArea label="ラベル" value={textarea} setter={setTextarea} />
@@ -84,6 +103,37 @@ export default () => {
       <dt>select box</dt>
       <dd>
         <SelectBox items={items} value={select} setter={setSelect}></SelectBox>
+      </dd>
+      <dt>modal</dt>
+      <dd>
+        <Button text="削除" valiant="outline" onClick={deleteClickHandler} />
+        <Modal active={del}>
+          <p className="alert">警告</p>
+          <p className="msg">この操作は取り消しできません。タスク「{task}」を削除します。</p>
+          <div className="modalButton">
+            <div className="mb">
+              <Button text="削除" valiant="main" />
+            </div>
+            <div className="mb">
+              <Button text="削除しない" valiant="outline" />
+            </div>
+          </div>
+        </Modal>
+      </dd>
+      <dt>icon</dt>
+      <dd>
+        <Icon name="info" checked={infoState} setter={setInfoState} />
+        <Icon name="fav" checked={favState} setter={setFavState} />
+        <Icon name="del" checked={delState} setter={setDelState} />
+        <Icon name="add" checked={addState} setter={setAddState} />
+      </dd>
+      <dt>check box</dt>
+      <dd>
+        <CheckBox text="チェックボックスを作る" checked={taskCheck} setter={setTaskCheck} />
+      </dd>
+      <dt>todo card</dt>
+      <dd>
+        <TodoCard text="Todoカードを作る" category="Work" date={new Date()} checked={false} />
       </dd>
       <dt>side bar</dt>
       <dd>

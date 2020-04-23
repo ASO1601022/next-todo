@@ -1,38 +1,27 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import All from '../public/svg/img/all.svg';
-import FavList from '../public/svg/img/favList.svg';
-import Line from '../public/svg/img/line.svg';
-import Logo from '../public/svg/img/logo.svg';
+import Icon from './Icon';
 import Changer from '../public/svg/img/changer.svg';
-import Pen from '../public/svg/img/pen.svg';
-import bag from '../public/svg/img/bag.svg';
-import fire from '../public/svg/img/fire.svg';
-import home from '../public/svg/img/home.svg';
-import ref from '../public/svg/img/ref.svg';
-import layer from '../public/svg/img/layer.svg';
 
 const SideBar = ({ selected, setter, items } = {}) => {
   const active = selected;
-
-  const iconList = { bag, fire, home, ref, layer };
   const categories = items.map((cate, index) => {
-    const Svg = styled(iconList[cate.id])``;
     return (
       <div id={cate.id} key={index}>
-        <Svg id={cate.id} />
+        <Icon name={cate.id} id={cate.id} />
         <Text id={cate.id}>{cate.name}</Text>
       </div>
     );
   });
 
-  const [y, setY] = useState(-955);
+  const [y, setY] = useState(-917);
   const changeHandler = (e) => {
     // 要素の位置を取得
     let positionY = e.target.getBoundingClientRect().top + window.pageYOffset;
     // 要素内におけるクリック位置を計算
     if (e.target.id !== '') {
-      setY(positionY - 1580);
+      setY(positionY - 1882);
+      console.log(y);
       setter && setter(e.target.id);
     }
   };
@@ -40,26 +29,26 @@ const SideBar = ({ selected, setter, items } = {}) => {
   return (
     <FullWrapper>
       <SideBarWrapper onClick={changeHandler}>
-        <Logo className="logo" />
+        <Icon name="logo" className="logo" />
         <PageWrapper selected={active}>
           <div id="all">
-            <All id="all" />
+            <Icon name="all" id="all" />
             <Text id="all">All</Text>
           </div>
           <div id="favList">
-            <FavList id="favList" />
+            <Icon name="favList" id="favList" />
             <Text id="favList">Favorite</Text>
           </div>
           <div className="cate">
             Categories
             <div className="line">
-              <Line />
+              <Icon name="line" />
             </div>
           </div>
           {categories}
         </PageWrapper>
         <button onClick={editHandler}>
-          <Pen />
+          <Icon name="pen" />
           <span>Edit Categories</span>
         </button>
       </SideBarWrapper>
@@ -69,6 +58,7 @@ const SideBar = ({ selected, setter, items } = {}) => {
 };
 
 export default SideBar;
+
 const Svg = styled(Changer)`
   position: relative;
   left: 248px;
