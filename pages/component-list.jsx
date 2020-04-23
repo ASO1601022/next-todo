@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import styled, { css } from 'styled-components';
 import TextField from '../components/TextField';
 import SelectBox from '../components/SelectBox';
+import SideBar from '../components/SideBar';
 import Modal from '../components/Modal';
 import Icon from '../components/Icon';
 import CheckBox from '../components/CheckBox';
@@ -13,6 +14,13 @@ const DlWrapper = styled.dl`
   dd {
     padding: 10px;
   }
+`;
+const Text = styled.span`
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21px;
+  margin-left: 30px;
+  vertical-align: middle;
 `;
 
 export default () => {
@@ -31,6 +39,29 @@ export default () => {
     {
       text: '選択肢255',
       value: '255',
+    },
+  ];
+  const [page, setPage] = useState('all');
+  const cateList = [
+    {
+      id: 'bag',
+      name: 'Work',
+    },
+    {
+      id: 'ref',
+      name: 'お買い物リスト',
+    },
+    {
+      id: 'fire',
+      name: '買いたい',
+    },
+    {
+      id: 'home',
+      name: 'House',
+    },
+    {
+      id: 'layer',
+      name: 'その他',
     },
   ];
   const [del, setDel] = useState(false);
@@ -103,6 +134,10 @@ export default () => {
       <dt>todo card</dt>
       <dd>
         <TodoCard text="Todoカードを作る" category="Work" date={new Date()} checked={false} />
+      </dd>
+      <dt>side bar</dt>
+      <dd>
+        <SideBar selected={page} setter={setPage} items={cateList} />
       </dd>
     </DlWrapper>
   );
