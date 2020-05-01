@@ -28,13 +28,22 @@ const theme = {
 };
 
 export default class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    const token = store.getState().login.token;
+    let pageProps = {};
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps({ ...ctx, token });
+    }
+    return { token, pageProps };
+  }
+
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, token } = this.props;
     return (
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <Component {...pageProps} />
+          <Component {...pageProps} token={token} />
         </ThemeProvider>
       </Provider>
     );

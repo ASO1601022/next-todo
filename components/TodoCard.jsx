@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import CheckBox from './CheckBox';
 import Icon from './Icon';
 
-const TodoCard = ({ text = '', category, date, checked } = {}) => {
+const TodoCard = ({ text = '', category, date, checked, id } = {}) => {
   const [state, setState] = useState(checked);
   const [infoState, setInfoState] = useState(checked);
   const [favState, setFavState] = useState(checked);
@@ -25,7 +25,7 @@ const TodoCard = ({ text = '', category, date, checked } = {}) => {
   ][date.getMonth()];
   let weekOfDay = date.getDay();
   return (
-    <div>
+    <div id={id}>
       <Date week={weekOfDay}>
         <div className="day">{day}</div>
         <div className="month">{month}</div>
@@ -46,7 +46,8 @@ const TodoCard = ({ text = '', category, date, checked } = {}) => {
 export default TodoCard;
 
 const Date = styled.div`
-  float: left;
+  display: inline-block;
+  text-align: center;
   margin-top: 5px;
   margin-right: 13px;
   font-family: 'Raleway';
@@ -82,10 +83,10 @@ const Date = styled.div`
 `;
 
 const TodoCardWrapper = styled.div`
-  float: left;
+  display: inline-block;
   font-family: 'Sawarabi Gothic';
   background: white;
-  width: 50%;
+  width: 90%;
   border: 1px solid ${(props) => props.theme.colors.borderline};
   box-sizing: border-box;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);

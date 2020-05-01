@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SelectBox = ({ items = [], value = '', setter } = {}) => {
-  const changeHandler = (e) => {
-    setter && setter(e.target.value);
-  };
+const SelectBox = ({ items = [], value = '', changeHandler } = {}) => {
   const option = items.map((item, index) => {
     return (
       <option key={index} value={item.value}>
