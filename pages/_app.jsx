@@ -5,6 +5,7 @@ import store from '../stores/';
 
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import restCSS from 'ress';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const GlobalStyle = createGlobalStyle`
   ${restCSS}
@@ -17,6 +18,7 @@ const theme = {
     borderline: '#DADADA',
     main: '#FF5470',
     gray: '#888888',
+    lightgray: '#F3F3F3',
     lime: '#00EBC7',
     primary: '#0070f3',
     white: '#FFFFFE',

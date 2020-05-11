@@ -4,13 +4,14 @@ import info from '../public/svg/img/info.svg';
 import fav from '../public/svg/img/fav.svg';
 import del from '../public/svg/img/del.svg';
 import add from '../public/svg/img/add.svg';
+import cancel from '../public/svg/img/cancel.svg';
 
 const Icon = ({ name, checked, setter } = {}) => {
   const state = checked;
-  const iconList = { info, fav, del, add };
+  const iconList = { info, fav, del, add, cancel };
 
   const clickHandler = () => {
-    setter(!state);
+    setter && setter(!state);
   };
 
   const Svg = styled(iconList[name])`

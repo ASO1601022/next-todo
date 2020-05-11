@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TextField = ({ label, value = '', placeholder = '', setter } = {}) => {
+const TextField = ({ label, value = '', placeholder = '', setter, onChange } = {}) => {
   const changeHandler = (e) => {
     setter && setter(e.target.value);
   };
